@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List Test</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+        integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <% include ../layout/bootstrapcss %>
+    <% include ../layout/datatablecss %>
+
+</head>
+
+<body div class="bg-#f6f9fa">
+    <% include ../layout/navbar %>
+    
+    <% data.forEach((test) => { %>
+        <h1><%= test.exam %></h1>
+    <% }); %>
+</body>
+
+</html>

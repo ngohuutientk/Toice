@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List Test</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+        integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <% include ../layout/bootstrapcss %>
+    <% include ../layout/datatablecss %>
+
+</head>
+
+<body div class="bg-#f6f9fa">
+    <% include ../layout/navbar %>
+
+    <div class="container mb-5">
+        <div class="card shadow-sm p-3 bg-white rounded mb-5">
+            <div class="card-body">
+                
+                <h3 class="text-center">Danh sách bộ đề</h3>
+                <table id="table" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>                       
+                            <th>Ngày tạo</th>
+                            <th>Bộ câu hỏi</th>
+                            <th>Edit/Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% tests.forEach((test) => { %>
+                        <tr>
+                            <td><%= test.testName %></td>
+                            <td><%= test.date %></td>
+                            <td class="text-center">
+                                <a href="/admin/tests/<%= test._id %>"><i class='fas fa-arrow-alt-circle-right' style='font-size: 2rem; color: cornflowerblue'></i></a>
+                            </td>
+                         
+                            <td class="text-center">
+                                <a href="#_id"
+                                    onclick="loadTest('<%= test.id %>', '<%= test.testName %>', '<%= test.imageURL %>', '<%= test.description %>')"
+                                    class="p-3">
+                                    <i class='fas fa-pencil-alt' style='font-size:1.5rem; color: green'></i>
+                                </a>
+                                <a href="/admin/tests/delete/<%= test._id %>" class="p-3">
+                                    <i class='fas fa-trash-alt' style='font-size: 1.5rem; color: brown'></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+
+                <h3 class="text-center mt-5">Add/Edit bộ đề</h3>
+                <form action="/admin/tests/update" method="POST" class="mt-1">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" readonly class="form-control" id="id" name="id" />
+                        <small>* Nếu muốn tạo mới vui lòng không điền thông tin vào trường này (xóa dữ liệu bằng cách ấn nút Reset)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="nameTest">Tên test</label>
+                        <input type="text" class="form-control" id="testName" name="testName" />
+
+                    </div>
+                    <div class="form-group">
+                        <label for="imageURL">Image URL</label>
+                        <input type="text" class="form-control" id="imageURL" name="imageURL" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Mô tả</label>
+                        <input type="description" name="description" class="form-control" id="description">
+                    </div>
+                    <div class="form-group"><br />
+                        <label>Ngày tạo: </label>
+                        <b><i><label id="date"></label></i></b>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <button type="reset" class="btn btn-info">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <% include ../layout/bootstrapjs %>
+    <% include ../layout/datatablejs %>
+
+    <script>
+        var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+        document.getElementById("date").textContent = utc;
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+    </script>
+    <script>
+
+        function loadTest(id, testName, imageURL, description) {
+
+            console.log(id);
+            document.getElementById("id").value = id;
+            document.getElementById("testName").value = testName;
+            document.getElementById("imageURL").value = imageURL;
+            document.getElementById("description").value = description;
+        }
+    </script>
+
+</body>
+
+</html>

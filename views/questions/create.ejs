@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <% include ../layout/bootstrapcss %>
+</head>
+
+<body>
+    <% include ../layout/navbar %>
+    <h2>PART 1</h2>
+    <form action="/tests/<%= testID %>/questions/create" method="post">
+        <label>Câu số:</label>
+        <select id="selectNumber" name="number">
+            <option value="0"> -- Select --</option>
+        </select> <br />
+        <label>Đáp án A:</label>
+        <input type="text" name="A"><br />
+        <label>Đáp án B:</label>
+        <input type="text" name="B"><br />
+        <label>Đáp án C:</label>
+        <input type="text" name="C"><br />
+        <label>Đáp án D:</label>
+        <input type="text" name="D"><br />
+        <label>Đáp án đúng:</label>
+        <select name="key">
+            <option value="A">A</option>
+            <option value="A">B</option>
+            <option value="A">C</option>
+            <option value="A">D</option>
+        </select>
+        <label>Audio URL:</label>
+        <input type="text" name="audioURL"><br />
+        <input type="hidden" name="part" value="1" /> 
+        <input type="submit" value="Add" />
+    </form>
+
+    <script>
+        var select = document.getElementById('selectNumber');
+        for (let i = 1; i <= 100; i++) {
+            var option = new Option;
+            option.text = i;
+            option.value = i;
+            select.options[i] = option;
+        }
+    </script>
+    <% include ../layout/bootstrapjs %>
+</body>
+
+</html>

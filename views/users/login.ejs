@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+        integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <% include ../layout/bootstrapcss %>
+
+</head>
+
+<body bgcolor="#f6f9fa">
+
+    <% include ../layout/navbar %>
+
+    <div id="container">
+
+        <div class="card bg-light">
+            <div class="card-body mx-auto">
+                
+                    <h4 class="card-title mt-3 text-center mb-4">Login</h4>
+                    <form action="/users/login" method="POST">
+                    
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="email" class="form-control" placeholder="Email" type="email">
+
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" name="password" placeholder="Password" type="password">
+                    </div> <!-- form-group// -->
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Log In </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Haven't an account? <a href="/users/signup">Sign Up</a> </p>
+                </form>
+            </div>
+        </div> <!-- card.// -->
+    </div>
+
+    <% include ../layout/bootstrapjs %>
+</body>
+
+</html>

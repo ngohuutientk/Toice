@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <% include ../layout/bootstrapcss %>
+</head>
+
+<body bgcolor="#f6f9fa">
+    <% include ../layout/navbar %>
+
+    <div class="container">
+
+        <div class="card shadow-sm p-3 bg-white rounded mb-5">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4 ">
+                        <img class="mr-5" class=" card-img-top" style="height: 20rem; width: 15rem"
+                            src="<%= test.imageURL %>" />
+                    </div>
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <h2 class="mb-5"><%= test.testName %></h2>
+                        <h5><%= test.description %></h5>
+                    </div>
+
+                </div>
+
+                <div class="card w-100 mt-5">
+                    <div class="card-header">
+                        <h3 class="mb-0 text-center">PART 1</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <% part1.forEach((part) => { %>
+                            <div class="col-sm-12 col-md-12 col-lg-4 mt-5">
+                                <img class="card-img-top mr-5" style="height: 20rem;" src="<%= part.imageURL %>" />
+                            </div>
+
+                            <div class="col-sm-12 col-md-12 col-lg-8 mt-5">
+                                <div class="h5">Câu: <%= part.number %></div>
+                                <audio class="my-3" style="width: 13rem" controls>
+                                    <source src="<%= part.audioURL %>" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <div class="h5">A: <%= part.A %></div>
+                                <div class="h5">B: <%= part.B %></div>
+                                <div class="h5">C: <%= part.C %></div>
+                                <div class="h5">D: <%= part.D %></div>
+                                <div class="h5">Đáp án đúng: <b><%= part.key %></b></div>
+
+                                
+                            </div>
+                            <% }) %>
+                        </div>
+                    
+                </div>
+            </div>
+
+            <div class="card w-100 mt-5">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center">PART 2</h3>
+                </div>
+                <div class="card-body">
+                   <div class="row">
+                            <% part2.forEach((part) => { %>
+                            <div class="col-sm-12 col-md-12 col-lg-8 mt-5">
+                                <div class="h5">Câu: <%= part.number %></div>
+                                <audio class="my-3" style="width: 13rem" controls>
+                                    <source src="<%= part.audioURL %>" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <div class="h5">Question: <%= part.question %></div>
+                                <div class="h5">A: <%= part.A %></div>
+                                <div class="h5">B: <%= part.B %></div>
+                                <div class="h5">C: <%= part.C %></div>
+                                
+                                <div class="h5">Đáp án đúng: <b><%= part.key %></b></div>
+
+                                
+                            </div>
+                            <% }) %>
+                        </div>
+                </div>
+            </div>
+            <div class="card w-100 mt-5">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center">PART 3</h3>
+                </div>
+                <div class="card-body">
+                    abcde
+                </div>
+            </div>
+            <div class="card w-100 mt-5">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center">PART 4</h3>
+                </div>
+                <div class="card-body">
+                    abcde
+                </div>
+            </div>
+            <div class="card w-100 mt-5">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center">PART 5</h3>
+                </div>
+                <div class="card-body">
+                    abcde
+                </div>
+            </div>
+            <div class="card w-100 mt-5">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center">PART 6</h3>
+                </div>
+                <div class="card-body">
+                    abcde
+                </div>
+            </div>
+            <div class="card w-100 mt-5">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center">PART 7</h3>
+                </div>
+                <div class="card-body">
+                    abcde
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- <div id="container">
+        <h2 id="name"><%= test.testName %></h2>
+        <img id="image" src="<%= test.imageURL %>" alt="book" style="width: 200px; height: 300px;" />
+        <h2 id="description"><%= test.description %></h2>
+
+        <button onclick="createForm()">Edit</button>
+    </div>
+
+    <script>
+        var form = document.createElement("form");
+        form.action = "/tests/update/<%= test._id %>";
+        form.method = "post";
+
+        var inputImageURL = document.createElement("input");
+        inputImageURL.type = "text";
+        inputImageURL.value = document.getElementById("image").src;
+        inputImageURL.name = "imageURL";
+
+        var inputDescription = document.createElement("input");
+        inputDescription.value = document.getElementById("description").textContent;
+        inputDescription.type = "text";
+        inputDescription.name = "description";
+
+        var inputName = document.createElement("input");
+        inputName.value = document.getElementById("name").textContent;
+        inputName.type = "text";
+        inputName.name = "testName";
+
+        var submit = document.createElement("button");
+        submit.type = "submit";
+        submit.append("Hello");
+
+        form.appendChild(inputName);
+        form.appendChild(inputImageURL);
+        form.appendChild(inputDescription);
+        form.appendChild(submit);
+
+        var container = document.getElementById("container");
+
+        function createForm() {
+            container.replaceWith(form);
+        }
+
+    </script> -->
+    <% include ../layout/bootstrapjs %>
+</body>
+
+</html>
